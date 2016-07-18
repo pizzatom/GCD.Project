@@ -63,3 +63,4 @@ X_mean_std<-X[,mean_std_names]
 ## Create new tidy data set with average of each variable from X_mean_std for each activity and each subject
 combined_data<-bind_cols(s,y,X_mean_std)
 tidy_data<-aggregate(.~Subject+Activity,combined_data,mean)
+write.table(tidy_data,file="tidy_data.txt",row.name=FALSE) 
