@@ -6,14 +6,14 @@ library(data.table)
 
 ## Download data 
 
-dataPath = "./data"
-if(!file.exists(dataPath)){dir.create(dataPath)}
+data_path = "./data"
+if(!file.exists(data_path)){dir.create(data_path)}
 f.url <-"https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
-f.dest<-paste(dataPath,"/project_data.zip",sep="")
+f.dest<-paste0(data_path,"/project_data.zip")
 download.file(f.url,f.dest,method="curl")    #download zip files
-unzip(f.dest, exdir=dataPath)                #extract to ./data directory
+unzip(f.dest, exdir=data_path)                #extract to ./data directory
 # create a character vector of all of the data files
-f.files<-list.files(path=paste(dataPath,"/UCI HAR Dataset",sep="bar"),full.names = TRUE, recursive = TRUE)
+f.files<-list.files(path=paste0(data_path,"/UCI HAR Dataset"),full.names = TRUE, recursive = TRUE)
 f.s_test<-f.files[14]
 f.X_test<-f.files[15]
 f.y_test<-f.files[16]
@@ -40,6 +40,7 @@ s<-bind_rows(s_test,s_train)      # subject identities
   
   
 ## Label data set
+dim_X<-dim(X)
 f.features<-f.files[3]                           # feature names for the X data
 old_names<-paste0("V",1:dim_X[2])                # old names sequence
 new_names<-as.vector(read.table(f.features)$V2)  # these might not be valid names, there might be duplicates
