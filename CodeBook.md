@@ -10,6 +10,10 @@ create a character vector of all of the data files with list.files()
 ## Import data 
 import data with read.table(). the locations of all the files are in the output of list.files().
 
+X contains all of the feature (variable) measurements
+y contains the activity corresponding to each measurement
+s contains the subject id from which the measurement came
+
 
 ## Merge testing and training sets 
 use bind.rows()
@@ -26,6 +30,5 @@ use gsub() and a fun for() loop
 match the names with grep(); match the patern "mean|std"
 
 ## Create new tidy data set with average of each variable from X_mean_std for each activity and each subject
-collect all of the X,y, and subject tables together with bind_cols()
-create a tidy data frame that summarizes the data with aggregate()
-
+collect all of the X,y,s together with bind_cols()
+create a tidy_data frame that summarizes the data with aggregate()
